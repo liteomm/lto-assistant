@@ -1,0 +1,6 @@
+{
+  "name": "LTO Assistant",
+  "description": "LTO Assistant - Your Smart AI Study Companion powered by LiteOMM.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
