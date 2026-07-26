@@ -15,9 +15,8 @@ android {
     signingConfigs {
         create("release") {
             val keystorePath = System.getenv("KEYSTORE_PATH")
-                ?: "${rootDir}/my-upload-key.jks"
 
-            if (file(keystorePath).exists()) {
+            if (!keystorePath.isNullOrBlank() && file(keystorePath).exists()) {
                 storeFile = file(keystorePath)
                 storePassword = System.getenv("STORE_PASSWORD")
                 keyAlias = "upload"
@@ -28,7 +27,7 @@ android {
 
     buildTypes {
         debug {
-            // Android default debug keystore automatically use karega
+            // Default Android debug signing use hoga
         }
 
         release {
@@ -39,8 +38,8 @@ android {
                 "proguard-rules.pro"
             )
 
-            if (file(System.getenv("KEYSTORE_PATH")
-                    ?: "${rootDir}/my-upload-key.jks").exists()) {
+            val keystorePath = System.getenv("KEYSTORE_PATH")
+            if (!keystorePath.isNullOrBlank() && file(keystorePath).exists()) {
                 signingConfig = signingConfigs.getByName("release")
             }
         }
